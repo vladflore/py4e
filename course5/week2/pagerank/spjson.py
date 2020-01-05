@@ -1,6 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect('spider.sqlite')
+conn = sqlite3.connect('spider_2.sqlite')
 cur = conn.cursor()
 
 print("Creating JSON output on spider.js...")

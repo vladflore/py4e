@@ -1,6 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect('spider.sqlite')
+conn = sqlite3.connect('spider_2.sqlite')
 cur = conn.cursor()
 
 # Find the ids that send out page rank - we only are interested

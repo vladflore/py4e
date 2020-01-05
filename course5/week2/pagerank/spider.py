@@ -11,7 +11,7 @@ ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
-conn = sqlite3.connect('spider.sqlite')
+conn = sqlite3.connect('spider_2.sqlite')
 cur = conn.cursor()
 
 cur.execute('''CREATE TABLE IF NOT EXISTS Pages
