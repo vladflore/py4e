@@ -2,7 +2,7 @@ import time
 
 import pandas as pd
 
-pd.set_option('display.max_rows', None)
+# pd.set_option('display.max_rows', None)
 # pd.set_option('display.max_columns', None)
 # pd.set_option('display.width', None)
 # pd.set_option('display.max_colwidth', -1)
@@ -50,10 +50,9 @@ product_sold_in_countries = foodfacts.apply(
 
 res = foodfacts[product_name_not_null & product_sold_in_countries][
     ['product_name', 'countries', 'saturated-fat_100g', 'proteins_100g']]
-res_sorted = res.sort_values(by=['saturated-fat_100g'], ascending=False, na_position='last') \
-    .sort_values(by=['proteins_100g'], ascending=True, na_position='last')
+res_sorted = res.sort_values(by=['saturated-fat_100g'], ascending=False, na_position='last')
 print('processed in', (time.time() - start_time), 'seconds')
-print(res_sorted.head(25))
+print(res_sorted.head(200))
 print(res_sorted.shape)
 
 # Romania or România 742

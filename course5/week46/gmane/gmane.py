@@ -2,7 +2,6 @@ import re
 import sqlite3
 import ssl
 import time
-import urllib.error
 import urllib.request
 from datetime import datetime
 
@@ -88,7 +87,7 @@ if start is None: start = 0
 
 many = 0
 count = 0
-fail = 0
+# fail = 0
 while True:
     if (many < 1):
         conn.commit()
@@ -122,8 +121,8 @@ while True:
     except Exception as e:
         print("Unable to retrieve or parse page", url)
         print("Error", e)
-        fail = fail + 1
-        if fail > 5: break
+        # fail = fail + 1
+        # if fail > 5: break
         continue
 
     print(url, len(text))
@@ -132,8 +131,8 @@ while True:
     if not text.startswith("From "):
         print(text)
         print("Did not find From ")
-        fail = fail + 1
-        if fail > 5: break
+        # fail = fail + 1
+        # if fail > 5: break
         continue
 
     pos = text.find("\n\n")
@@ -143,8 +142,8 @@ while True:
     else:
         print(text)
         print("Could not find break between headers and body")
-        fail = fail + 1
-        if fail > 5: break
+        # fail = fail + 1
+        # if fail > 5: break
         continue
 
     email = None
@@ -170,8 +169,8 @@ while True:
         except:
             print(text)
             print("Parse fail", tdate)
-            fail = fail + 1
-            if fail > 5: break
+            # fail = fail + 1
+            # if fail > 5: break
             continue
 
     subject = None
@@ -179,7 +178,7 @@ while True:
     if len(z) == 1: subject = z[0].strip().lower();
 
     # Reset the fail counter
-    fail = 0
+    # fail = 0
     print("   ", email, sent_at, subject)
     cur.execute('''INSERT OR IGNORE INTO Messages (id, email, sent_at, subject, headers, body)
         VALUES ( ?, ?, ?, ?, ?, ? )''', (start, email, sent_at, subject, hdr, body))
